@@ -1,12 +1,15 @@
-FROM golang:alpine3.18 AS builder
-RUN mkdir /app
-ADD . /app
+FROM golang:1.21.0-alpine
+
 WORKDIR /app
-RUN go build main.go
 
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
 
-FROM alpine:3.18 
-WORKDIR /root/
-COPY --from=builder /app/main .
+COPY . .
+
+RUN go build -o main.app .
+
 EXPOSE 8000
-CMD [ "./main" ]
+
+CMD ["/app/main.app"]
