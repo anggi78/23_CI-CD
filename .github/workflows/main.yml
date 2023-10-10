@@ -43,8 +43,8 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo docker stop cicd
-            sudo docker rm cicd
-            sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
-            sudo docker run -d -p 8080:8080 -e APP_PORT=${{ secrets.SERVERPORT }} -e DB_USER=${{ secrets.DBUSER }} -e DB_PASSWORD=${{ secrets.DBPASS }} -e DB_HOST=${{ secrets.DBHOST }} -e DB_PORT=${{ secrets.DBPORT }} -e DB_NAME=${{ secrets.DBNAME }} --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd:latest
+            docker stop cicd
+            docker rm cicd
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
+            docker run -d -p 8080:8080 -e APP_PORT=${{ secrets.SERVERPORT }} -e DB_USER=${{ secrets.DBUSER }} -e DB_PASSWORD=${{ secrets.DBPASS }} -e DB_HOST=${{ secrets.DBHOST }} -e DB_PORT=${{ secrets.DBPORT }} -e DB_NAME=${{ secrets.DBNAME }} --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd:latest
