@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: docker build
-        run: docker build -t aisyah78/23_CI-CD:latest .
+        run: docker build -t aisyah78/23_ci-cd:1.0 .
