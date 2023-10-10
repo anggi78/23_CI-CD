@@ -44,6 +44,6 @@ jobs:
           script: |
             docker stop cicd
             docker rm cicd
-            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd
             docker run -d -p 8080:8080 -e APP_PORT=${{ secrets.SERVERPORT }} -e DBUSER=${{ secrets.DBUSER }} -e DBPASS=${{ secrets.DBPASS }} -e DBHOST=${{ secrets.DBHOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd:latest
