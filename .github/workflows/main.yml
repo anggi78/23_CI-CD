@@ -30,8 +30,7 @@ jobs:
         file: ./dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd:latest
-
- deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: docker
     steps:
@@ -43,8 +42,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker pull aisyah78/task-ci-cd:latest
-            
+            docker pull aisyah78/task-ci-cd:latest 
             docker stop cicd
             docker rm cicd
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/task-ci-cd-images
